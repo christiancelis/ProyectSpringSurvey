@@ -1,8 +1,9 @@
 package com.proyectospringsurvey.survey.surveys.domain;
 
-import java.time.LocalDateTime;
+import com.proyectospringsurvey.survey.audit.domain.Audit;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -18,19 +19,18 @@ import lombok.Setter;
 public class Survey {
 @Id
 private Long id;
-@Column(name = "create_at",columnDefinition = "timestamp")
-    private LocalDateTime createdAt;
-    @Column(name = "update_at",columnDefinition = "timestamp")
-    private LocalDateTime updateAt;
+@Embedded
+    Audit audit = new Audit();
     @Column
     private String description;
     @Column
     private String name;
     @Override
     public String toString() {
-        return "Survey [id=" + id + ", createdAt=" + createdAt + ", updateAt=" + updateAt + ", description="
-                + description + ", name=" + name + "]";
+        return "Survey [id=" + id + ", audit=" + audit + ", description=" + description + ", name=" + name + "]";
     }
+  
+ 
 
     
 }

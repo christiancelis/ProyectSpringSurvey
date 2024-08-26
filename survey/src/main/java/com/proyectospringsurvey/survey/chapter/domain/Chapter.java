@@ -2,7 +2,10 @@ package com.proyectospringsurvey.survey.chapter.domain;
 
 import java.time.LocalDateTime;
 
+import com.proyectospringsurvey.survey.audit.domain.Audit;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,15 +24,21 @@ public class Chapter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "create_at", columnDefinition = "timestamp")
-    private LocalDateTime createdAt;
+  @Embedded
+    Audit audit = new Audit();
     @Column(name = "survey_id")
     private Long surveyId;/*FORANEA */
-    @Column(name = "update_at",columnDefinition = "timestamp")
-    private LocalDateTime updateAt;
+  
     @Column(name = "chapter_number",columnDefinition = "varchar(50)")
     private String chapterNumer;
     @Column(name = "chapter_title",columnDefinition = "varchar(50)")
     private String chapterTitle;
+    @Override
+    public String toString() {
+        return "Chapter [id=" + id + ", audit=" + audit + ", surveyId=" + surveyId + ", chapterNumer=" + chapterNumer
+                + ", chapterTitle=" + chapterTitle + "]";
+    }
+    
+
     
 }
