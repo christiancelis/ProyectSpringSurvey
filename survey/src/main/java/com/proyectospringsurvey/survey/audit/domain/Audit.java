@@ -16,10 +16,10 @@ import lombok.Setter;
 @Setter
 public class Audit {
     
-    @Column(name = "created_at", columnDefinition = "TIMESTAMP(6)", nullable = false)
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at", columnDefinition = "TIMESTAMP(6)", nullable = false)
+    @Column(name = "updated_at", columnDefinition = "TIMESTAMP", nullable = false)
     private LocalDateTime updatedAt;
 
     @PrePersist

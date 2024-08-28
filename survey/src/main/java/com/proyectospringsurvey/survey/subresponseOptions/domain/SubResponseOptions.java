@@ -1,12 +1,17 @@
 package com.proyectospringsurvey.survey.subresponseOptions.domain;
 
 import com.proyectospringsurvey.survey.audit.domain.Audit;
+import com.proyectospringsurvey.survey.categoriesCatalog.domain.CategoriesCatalog;
+import com.proyectospringsurvey.survey.responseOptions.domain.ResponseOptions;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +27,7 @@ public class SubResponseOptions{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "subresponse_number", columnDefinition = "int(8)", nullable = false)
+    @Column(name = "subresponse_number", columnDefinition = "int", nullable = false)
     private int subresponseNumber;
 
     @Embedded
@@ -31,9 +36,13 @@ public class SubResponseOptions{
     @Column(name = "component_html", columnDefinition = "VARCHAR(255)", nullable = false)
     private String componentHtml;
 
-    @Column(name = "supresponse_text", columnDefinition = "VARCHAR(255)", nullable = false)
+    @Column(name = "subresponse_text", columnDefinition = "VARCHAR(255)", nullable = false)
     private String subresponseText;
 
 
-  
+    @ManyToOne
+    @JoinColumn(name = "responseoptions_id")
+    private ResponseOptions responseOptions;
+
+    
 }

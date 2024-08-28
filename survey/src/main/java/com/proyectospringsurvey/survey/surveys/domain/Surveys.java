@@ -15,8 +15,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "surve")
-public class Survey {
+@Table(name = "surveys")
+public class Surveys {
 @Id
 private Long id;
 @Embedded

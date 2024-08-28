@@ -1,4 +1,4 @@
-package com.proyectospringsurvey.survey.chapter.domain;
+package com.proyectospringsurvey.survey.survey_json.domain;
 
 import com.proyectospringsurvey.survey.audit.domain.Audit;
 import com.proyectospringsurvey.survey.surveys.domain.Surveys;
@@ -20,29 +20,27 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "chapters")
-public class Chapter {
+@Table(name = "survey_json")
+public class SurveyJson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Embedded
     Audit audit = new Audit();
     
-    @Column(name = "chapter_number",columnDefinition = "varchar(50)")
-    private String chapterNumer;
-    @Column(name = "chapter_title",columnDefinition = "varchar(50)")
-    private String chapterTitle;
-   
+    @Column(columnDefinition = "jsonb")
+    private String payload;
+    
     @ManyToOne
     @JoinColumn(name = "survey_id")
     private Surveys surveys;
-
-    
-
 
 
     
 
     
 }
+
+
+

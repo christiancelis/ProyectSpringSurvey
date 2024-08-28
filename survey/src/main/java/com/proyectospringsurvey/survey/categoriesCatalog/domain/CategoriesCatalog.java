@@ -1,5 +1,4 @@
-package com.proyectospringsurvey.survey.survey_json.domain;
-import java.time.LocalDateTime;
+package com.proyectospringsurvey.survey.categoriesCatalog.domain;
 
 import com.proyectospringsurvey.survey.audit.domain.Audit;
 
@@ -15,33 +14,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name = "categories_catalog")
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "surveys")
-public class Surveys {
+public class CategoriesCatalog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(name = "survey_id")
-    private Long surveyId;
 
     @Embedded
     Audit audit = new Audit();
-    
-    @Column(columnDefinition = "jsonb")
-    private String payload;
 
-    @Override
-    public String toString() {
-        return "Surveys [id=" + id + ", surveyId=" + surveyId + ", audit=" + audit + ", payload=" + payload + "]";
-    }
+    @Column(nullable=false)
+    private  String name;
 
     
 
-    
+
 }
-
-
-
