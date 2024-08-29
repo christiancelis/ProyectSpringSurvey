@@ -1,7 +1,5 @@
 package com.proyectospringsurvey.survey.responseOptions.domain;
 
-import java.util.Locale.Category;
-
 import com.proyectospringsurvey.survey.audit.domain.Audit;
 import com.proyectospringsurvey.survey.categoriesCatalog.domain.CategoriesCatalog;
 import com.proyectospringsurvey.survey.question.domain.Question;

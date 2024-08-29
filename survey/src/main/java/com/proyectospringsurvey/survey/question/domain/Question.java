@@ -2,7 +2,6 @@ package com.proyectospringsurvey.survey.question.domain;
 
 import com.proyectospringsurvey.survey.audit.domain.Audit;
 import com.proyectospringsurvey.survey.chapter.domain.Chapter;
-import com.proyectospringsurvey.survey.surveys.domain.Surveys;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;

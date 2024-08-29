@@ -1,7 +1,6 @@
 package com.proyectospringsurvey.survey.subresponseOptions.domain;
 
 import com.proyectospringsurvey.survey.audit.domain.Audit;
-import com.proyectospringsurvey.survey.categoriesCatalog.domain.CategoriesCatalog;
 import com.proyectospringsurvey.survey.responseOptions.domain.ResponseOptions;
 
 import jakarta.persistence.Column;
