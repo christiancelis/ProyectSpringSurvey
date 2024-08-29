@@ -25,12 +25,17 @@ private Long id;
     private String description;
     @Column
     private String name;
+    
     @Override
     public String toString() {
         return "Survey [id=" + id + ", audit=" + audit + ", description=" + description + ", name=" + name + "]";
     }
-  
- 
 
     
+
+    
+ 
+
+
+  
 }
