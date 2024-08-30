@@ -2,6 +2,7 @@ package com.proyectospringsurvey.survey.users.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.proyectospringsurvey.survey.roles.domain.Roles;
 
 import jakarta.persistence.Column;
@@ -13,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,6 +39,10 @@ public class Users {
 
     @Column(name = "password", columnDefinition = "VARCHAR(255)", nullable = false)
     private String  password;
+
+    @Transient
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    public boolean admin;
 
     @ManyToMany
     @JoinTable

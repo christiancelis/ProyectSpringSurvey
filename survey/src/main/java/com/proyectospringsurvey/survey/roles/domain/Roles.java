@@ -2,6 +2,7 @@ package com.proyectospringsurvey.survey.roles.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.proyectospringsurvey.survey.users.domain.Users;
 
 import jakarta.persistence.Column;
@@ -30,6 +31,7 @@ public class Roles {
     @Column(name = "name", columnDefinition = "VARCHAR(255)", nullable = false)
     private String name;
 
+    @JsonIgnoreProperties({"roles", "handler", "hibernateLazyInitializer"})
     @ManyToMany(mappedBy = "roles")
     private List<Users> users;
     
