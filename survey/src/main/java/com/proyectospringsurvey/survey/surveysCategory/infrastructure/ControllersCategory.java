@@ -27,11 +27,15 @@ public class ControllersCategory {
     private ImpServicesCategory impServicesCategory;
 
     @PostMapping("SurveyCategory")
-    public ResponseEntity<?> createsCategory(@RequestBody Optional<surveysCategory> sCategory) {
-        if(sCategory.isPresent()){
-            return ResponseEntity.ok().body(impServicesCategory.createsCategory(sCategory.get()));
-        } 
-        return ResponseEntity.notFound().build();
+    public surveysCategory createsCategory(@RequestBody Optional<surveysCategory> sCategory) {
+        // if(sCategory.isPresent()){
+        //     return ResponseEntity.ok().body(impServicesCategory.createsCategory(sCategory.get()));
+        // } 
+        // return ResponseEntity.notFound().build();
+
+        surveysCategory sCat = new surveysCategory();
+        sCat.setName("camilo");
+        return impServicesCategory.createsCategory(sCat);
     }
 
     @GetMapping("SurveyCategory")
