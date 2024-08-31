@@ -12,12 +12,20 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class CorsConfig {
 
     @Bean
-    CorsConfigurationSource configurationSource(){
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:8080","https://radiant-growth-production.up.railway.app", "http://127.0.0.1:5502", "https://surveyfront.netlify.app"));
-        corsConfiguration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","PATCH"));
+        corsConfiguration.setAllowedOrigins(Arrays.asList(
+                "http://localhost:8080/",
+                "https://radiant-growth-production.up.railway.app/",
+                "http://127.0.0.1:5502/",
+                "https://surveyfrontend.netlify.app/"
+        ));
+        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
+        corsConfiguration.setAllowedHeaders(Arrays.asList("*")); // Permitir todos los encabezados
+        corsConfiguration.setAllowCredentials(true); // Permitir el uso de credenciales (cookies, etc.)
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**",corsConfiguration);
+        source.registerCorsConfiguration("/**", corsConfiguration);
         return source;
     }
 }
