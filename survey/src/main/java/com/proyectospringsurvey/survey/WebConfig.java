@@ -1,4 +1,4 @@
-package com.proyectospringsurvey.survey.utils;
+package com.proyectospringsurvey.survey;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -10,9 +10,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/*")
-                .allowedOrigins("") // Permite cualquier origen
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS") // Permite estos métodos
-                .allowedHeaders("*") // Permite cualquier encabezado
-                .allowCredentials(true); // Permite enviar credenciales (si es necesario)
+                .allowedOrigins("*")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("");
     }
 }
