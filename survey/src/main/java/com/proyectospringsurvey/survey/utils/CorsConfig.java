@@ -14,7 +14,7 @@ public class CorsConfig {
     @Bean
     CorsConfigurationSource configurationSource(){
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:8080,https://radiant-growth-production.up.railway.app", "http://localhost:5502", "https://surveyfront.netlify.app"));
+        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:8080","https://radiant-growth-production.up.railway.app", "http://127.0.0.1:5502", "https://surveyfront.netlify.app"));
         corsConfiguration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","PATCH"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**",corsConfiguration);
