@@ -19,28 +19,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@RequestMapping("/api/chapter/")
+@RequestMapping("/api/")
 public class ChapterController {
 
     @Autowired 
     private ChapterImpService chapterImpService;
 
 
-    @GetMapping("")
+    @GetMapping("chapter")
     public List<Chapter> getAllChapters(@RequestParam String param) {
         return chapterImpService.getAllChapters();
     }
 
     
 
-    @PostMapping("")
+    @PostMapping("chapter")
     public Chapter createChapter(@RequestBody Chapter chapter) {
         return chapterImpService.createChapter(chapter);
         
     }
 
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("chapter/{id}")
     public Chapter deleteChapter(@PathVariable Long id) {
         return chapterImpService.deleteChapterById(id);
     }  
