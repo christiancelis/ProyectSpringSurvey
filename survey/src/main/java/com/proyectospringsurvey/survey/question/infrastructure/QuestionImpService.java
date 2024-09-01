@@ -10,7 +10,6 @@ import com.proyectospringsurvey.survey.chapter.domain.Chapter;
 import com.proyectospringsurvey.survey.chapter.infrastructure.ChapterRepository;
 import com.proyectospringsurvey.survey.question.application.IQuestion;
 import com.proyectospringsurvey.survey.question.domain.Question;
-import com.proyectospringsurvey.survey.surveys.domain.Surveys;
 
 @Service
 public class QuestionImpService implements IQuestion{
