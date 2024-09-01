@@ -1,4 +1,5 @@
 package com.proyectospringsurvey.survey.errorHandler.domain;
+
 import java.util.Date;
 
 public class ErrorCustom {
@@ -28,10 +29,17 @@ public class ErrorCustom {
     public void setStatus(int status) {
         this.status = status;
     }
+
     public Date getDate() {
         return date;
     }
+
     public void setDate(Date date) {
         this.date = date;
     }
+
+   
+
+    
+    
 }

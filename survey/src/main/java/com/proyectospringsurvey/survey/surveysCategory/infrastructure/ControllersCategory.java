@@ -3,6 +3,7 @@ package com.proyectospringsurvey.survey.surveysCategory.infrastructure;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyectospringsurvey.survey.surveys.domain.Surveys;
 import com.proyectospringsurvey.survey.surveysCategory.domain.surveysCategory;
 
 import java.util.List;
@@ -35,6 +36,11 @@ public class ControllersCategory {
             return ResponseEntity.ok().body(impServicesCategory.createsCategory(sCategory.get()));
         } 
         return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("survey/category/{id}")
+    public ResponseEntity<?> addSurveyToCategory(@PathVariable Long id, @RequestBody Surveys survey) {
+       return ResponseEntity.ok().body(impServicesCategory.addSurveyToCategories(id, survey));
     }
 
     @GetMapping("SurveyCategory")
