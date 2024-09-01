@@ -37,12 +37,5 @@ public class Chapter {
     @ManyToOne
     @JoinColumn(name = "survey_id")
     private Surveys surveys;
-
-    
-
-
-
-    
-
     
 }

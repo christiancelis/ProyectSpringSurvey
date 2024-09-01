@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.proyectospringsurvey.survey.chapter.application.IChapter;
 import com.proyectospringsurvey.survey.chapter.domain.Chapter;
+import com.proyectospringsurvey.survey.surveys.domain.Surveys;
+import com.proyectospringsurvey.survey.surveys.infrastructure.SurveyRepository;
 
 @Service
 public class ChapterImpService implements IChapter{
@@ -15,14 +17,30 @@ public class ChapterImpService implements IChapter{
     @Autowired
     private ChapterRepository chapterRepository;
 
+    @Autowired 
+    private SurveyRepository surveyRepository;
+
+
     @Override
-    public Chapter createChapter(Chapter chapter) {
-        return chapterRepository.save(null);
+    public Chapter createChapter(Long idSurvey, Chapter chapter) {
+        Optional<Surveys> encuesta = surveyRepository.findById(idSurvey);
+        if(encuesta.isPresent()){
+            chapter.setSurveys(encuesta.get());
+            return chapterRepository.save(chapter);
+        }
+
+        return null;
     }
 
     @Override
-    public List<Chapter> getAllChapters() {
-        return chapterRepository.findAll();
+    public List<Chapter> getAllChapters(Long id) {
+         Optional<Surveys> encuesta = surveyRepository.findById(id);
+         if (encuesta.isPresent()) {
+             return chapterRepository.findAllBySurveys_Id(id);
+         } else {
+             throw new RuntimeException("Survey not found");
+         }
+        
     }
 
     @Override

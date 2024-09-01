@@ -10,7 +10,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,19 +25,18 @@ public class ChapterController {
     private ChapterImpService chapterImpService;
 
 
-    @GetMapping("chapter")
-    public List<Chapter> getAllChapters(@RequestParam String param) {
-        return chapterImpService.getAllChapters();
+    @GetMapping("chapter/{surveyid}")
+    public List<Chapter> getAllChapters(@PathVariable Long surveyid) {
+        return chapterImpService.getAllChapters(surveyid);
     }
 
     
 
-    @PostMapping("chapter")
-    public Chapter createChapter(@RequestBody Chapter chapter) {
-        return chapterImpService.createChapter(chapter);
+    @PostMapping("chapter/{surveyid}")
+    public Chapter createChapter(@PathVariable Long surveyid,@RequestBody Chapter chapter) {
+        return chapterImpService.createChapter(surveyid,chapter);
         
     }
-
 
     @DeleteMapping("chapter/{id}")
     public Chapter deleteChapter(@PathVariable Long id) {
