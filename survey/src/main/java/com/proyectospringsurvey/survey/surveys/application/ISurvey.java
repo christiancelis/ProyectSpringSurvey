@@ -11,4 +11,5 @@ public interface ISurvey {
      List<Surveys> getAllSurveys();
      Optional<Surveys> findByIdSurveys(Long id);
      Set<Surveys> getSurveysByIdCategory(Long id);
+     Surveys partialUpdate(Surveys survey);
 }

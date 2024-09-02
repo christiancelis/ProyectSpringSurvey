@@ -11,6 +11,7 @@ import com.proyectospringsurvey.survey.surveys.application.ISurvey;
 import com.proyectospringsurvey.survey.surveys.domain.Surveys;
 import com.proyectospringsurvey.survey.surveysCategory.domain.surveysCategory;
 import com.proyectospringsurvey.survey.surveysCategory.infrastructure.RepositorysCategory;
+import com.proyectospringsurvey.survey.utils.Patcher;
 
 @Service
 public class SurveyImpService implements ISurvey{
@@ -20,6 +21,10 @@ public class SurveyImpService implements ISurvey{
 
     @Autowired
     RepositorysCategory repositorysCategory;
+    
+    @Autowired
+    Patcher patcher;
+    
 
 
     @Override
@@ -46,6 +51,22 @@ public class SurveyImpService implements ISurvey{
         return null;
     }
 
+    @Override
+    public Surveys partialUpdate(Surveys survey) {
+        Optional <Surveys> encuestaExistente = surveyRepository.findById(survey.getId());
+        if(encuestaExistente.isPresent()){
+            try {
+                Patcher.internPatcher(encuestaExistente.get(),survey);
+                surveyRepository.save(encuestaExistente.get());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return encuestaExistente.get();
+            
+        }
+  
+        return null;
+    }
     
     
 
