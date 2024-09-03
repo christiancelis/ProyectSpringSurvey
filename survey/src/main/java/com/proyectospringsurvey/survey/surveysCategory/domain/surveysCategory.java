@@ -32,7 +32,8 @@ public class surveysCategory {
     @Embedded
     Audit audit = new Audit();
 
-    @Column(columnDefinition = "VARCHAR(20)")
+    
+    @Column(columnDefinition = "VARCHAR(20)", unique = true)
     private String name;
 
     @ManyToMany(cascade = CascadeType.REMOVE)
