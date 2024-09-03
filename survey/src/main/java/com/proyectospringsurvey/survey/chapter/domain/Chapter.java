@@ -15,7 +15,6 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 @Entity
 @Getter
 @Setter
@@ -29,9 +28,9 @@ public class Chapter {
     @Embedded
     Audit audit = new Audit();
     
-    @Column(name = "chapter_number",columnDefinition = "varchar(50)")
-    private String chapterNumer;
-    @Column(name = "chapter_title",columnDefinition = "varchar(50)")
+    @Column(name = "chapter_number", columnDefinition = "varchar(50)")
+    private String chapterNumber; // Cambiado a chapterNumber para mayor claridad
+    @Column(name = "chapter_title", columnDefinition = "varchar(50)")
     private String chapterTitle;
    
     @ManyToOne
@@ -39,3 +38,4 @@ public class Chapter {
     private Surveys surveys;
     
 }
+
