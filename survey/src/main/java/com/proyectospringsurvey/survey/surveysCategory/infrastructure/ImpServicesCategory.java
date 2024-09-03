@@ -51,7 +51,6 @@ public class ImpServicesCategory implements ISurveyCategory{
     public surveysCategory addSurveyToCategories(Long idCategory, Surveys survey) {
         surveysCategory sCategory = repositorysCategory.findById(idCategory)
             .orElseThrow(() -> new RuntimeException("ID de categoría no válido"));
-    
         // Guardar la encuesta si no está ya persistida
         if (survey.getId() == null) {
             survey = surveyRepository.save(survey);

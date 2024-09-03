@@ -3,6 +3,7 @@ package com.proyectospringsurvey.survey.question.domain;
 import com.proyectospringsurvey.survey.audit.domain.Audit;
 import com.proyectospringsurvey.survey.chapter.domain.Chapter;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -37,7 +38,7 @@ public class Question {
     @Column(name = "question_text",columnDefinition = "text")
     private String questionText;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "chapter_id")
     private Chapter chapter;
 

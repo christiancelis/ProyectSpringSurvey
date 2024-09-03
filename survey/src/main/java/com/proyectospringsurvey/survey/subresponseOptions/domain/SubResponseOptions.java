@@ -3,6 +3,7 @@ package com.proyectospringsurvey.survey.subresponseOptions.domain;
 import com.proyectospringsurvey.survey.audit.domain.Audit;
 import com.proyectospringsurvey.survey.responseOptions.domain.ResponseOptions;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -39,7 +40,7 @@ public class SubResponseOptions{
     private String subresponseText;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "responseoptions_id")
     private ResponseOptions responseOptions;
 

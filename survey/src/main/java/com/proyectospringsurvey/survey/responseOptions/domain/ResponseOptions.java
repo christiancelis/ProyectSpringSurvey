@@ -4,6 +4,7 @@ import com.proyectospringsurvey.survey.audit.domain.Audit;
 import com.proyectospringsurvey.survey.categoriesCatalog.domain.CategoriesCatalog;
 import com.proyectospringsurvey.survey.question.domain.Question;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -44,15 +45,15 @@ public class ResponseOptions {
     @Column(name = "option_text", columnDefinition = "TEXT", nullable = false)
     private String optionText;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "parentresponse_id")
     private ResponseOptions responseOptions;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "questions_id")
     private Question question;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "categorycatalog_id")
     private CategoriesCatalog categoriesCatalog;
    
