@@ -2,7 +2,6 @@ package com.proyectospringsurvey.survey.surveys.infrastructure;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,15 +27,21 @@ public class SurveyImpService implements ISurvey{
 
 
     @Override
-    public Surveys createSurvey(Surveys surveyData) {
-        return surveyRepository.save(surveyData);
+    public Surveys createSurvey(Long idCategory,Surveys survey) {
+        surveysCategory sCategory = repositorysCategory.findById(idCategory)
+        .orElseThrow(() -> new RuntimeException("ID de categoría no válido"));
+    // Guardar la encuesta si no está ya persistida
+    if (survey.getId() == null) {
+        survey.setsCat(sCategory);
+        surveyRepository.save(survey);
+        return survey;
     }
     
-    @Override
-    public List<Surveys> getAllSurveys() {
-        return surveyRepository.findAll();
+    return null;
     }
 
+    
+   
     @Override
     public Optional<Surveys> findByIdSurveys(Long id) {
         return surveyRepository.findById(id);
@@ -46,7 +51,7 @@ public class SurveyImpService implements ISurvey{
     public List<Surveys> getSurveysByIdCategory(Long id){
         Optional<surveysCategory> categoria = repositorysCategory.findById(id);
         if(categoria.isPresent()){
-            return surveyRepository.findBySCat(categoria.get());
+            return surveyRepository.findAllBySCat(categoria.get());
         }
         return null;
     }
@@ -70,15 +75,16 @@ public class SurveyImpService implements ISurvey{
 
     @Override
     public Surveys deleteSurvey(Long id) {
-        // Optional<Surveys> encuesta = surveyRepository.findById(id);
 
-        // if(encuesta.isPresent()){
-        //     Surveys survey = encuesta.get();
-        //     survey.getCategories_survey().clear();
-        //     surveyRepository.save(survey);
-        //     surveyRepository.deleteById(id);
-        //     return survey;
-        // }
+        Optional<Surveys> encuesta = surveyRepository.findById(id);
+
+        if(encuesta.isPresent()){
+            Surveys survey = encuesta.get();
+            survey.setsCat(null);
+            surveyRepository.save(encuesta.get());
+            surveyRepository.deleteById(id);
+            return survey;
+        }
 
         return null;
     }

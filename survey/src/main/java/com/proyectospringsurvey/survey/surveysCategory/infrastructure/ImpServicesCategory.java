@@ -6,8 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.proyectospringsurvey.survey.surveys.domain.Surveys;
-import com.proyectospringsurvey.survey.surveys.infrastructure.SurveyRepository;
+
 import com.proyectospringsurvey.survey.surveysCategory.application.ISurveyCategory;
 import com.proyectospringsurvey.survey.surveysCategory.domain.surveysCategory;
 
@@ -16,10 +15,6 @@ public class ImpServicesCategory implements ISurveyCategory{
     
     @Autowired
     private RepositorysCategory repositorysCategory;
-
-    @Autowired
-    private SurveyRepository surveyRepository;
-
 
     @Override
     public surveysCategory createsCategory(surveysCategory sCategory) {
@@ -47,19 +42,6 @@ public class ImpServicesCategory implements ISurveyCategory{
         return null;
     }
 
-    @Override
-    public surveysCategory addSurveyToCategories(Long idCategory, Surveys survey) {
-        surveysCategory sCategory = repositorysCategory.findById(idCategory)
-            .orElseThrow(() -> new RuntimeException("ID de categoría no válido"));
-        // Guardar la encuesta si no está ya persistida
-        if (survey.getId() == null) {
-            survey.setsCat(sCategory);
-            surveyRepository.save(survey);
-            return sCategory;
-        }
-        
-        return null;
-    }
     
     
 }

@@ -11,7 +11,7 @@ import com.proyectospringsurvey.survey.surveysCategory.domain.surveysCategory;
 
 @Repository
 public interface SurveyRepository extends JpaRepository<Surveys,Long>{
-    List<Surveys> findBySCat(surveysCategory sCat);
+    List<Surveys> findAllBySCat(surveysCategory sCat);
 
      
 }

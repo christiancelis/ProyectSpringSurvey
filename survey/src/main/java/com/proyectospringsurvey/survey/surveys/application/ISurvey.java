@@ -6,8 +6,9 @@ import java.util.Optional;
 import com.proyectospringsurvey.survey.surveys.domain.Surveys;
 
 public interface ISurvey {
-     Surveys createSurvey(Surveys surveys);
-     List<Surveys> getAllSurveys();
+     Surveys createSurvey(Long idCategoria, Surveys surveys);
+     
+
      Optional<Surveys> findByIdSurveys(Long id);
      List<Surveys> getSurveysByIdCategory(Long id);
      Surveys partialUpdate(Surveys survey);

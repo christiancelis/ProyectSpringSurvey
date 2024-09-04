@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.proyectospringsurvey.survey.surveys.domain.Surveys;
 
 
-
-import java.util.List;
 import java.util.Optional;
 
 
@@ -32,10 +30,6 @@ public class SurveyController {
     private SurveyImpService surveyImpService;
 
 
-    @GetMapping("survey")
-    public List<Surveys> getSurveys() {
-        return surveyImpService.getAllSurveys(); 
-    }
 
     @GetMapping("survey/{id}")
     public ResponseEntity<Optional<Surveys>> getSurveyById(@PathVariable Long id) {
@@ -45,17 +39,17 @@ public class SurveyController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
-    @GetMapping("surveys/{id}")
-    public ResponseEntity <?> getSurveyByCategoriaId(@PathVariable Long id) {
-        if(surveyImpService.getSurveysByIdCategory(id)!=null){
-            return ResponseEntity.ok().body(surveyImpService.getSurveysByIdCategory(id));
+    @GetMapping("surveys/{idCategory}")
+    public ResponseEntity <?> getSurveyByCategoriaId(@PathVariable Long idCategory) {
+        if(surveyImpService.getSurveysByIdCategory(idCategory)!=null){
+            return ResponseEntity.ok().body(surveyImpService.getSurveysByIdCategory(idCategory));
         }
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("survey")
-    public Surveys createSurvey(@RequestBody Surveys surveyData) {
-        return surveyImpService.createSurvey(surveyData); 
+    @PostMapping("survey/{idCategory}")
+    public Surveys createSurvey(@PathVariable Long idCategory, @RequestBody Surveys surveyData) {
+        return surveyImpService.createSurvey(idCategory, surveyData); 
     }
 
     @DeleteMapping("survey/{id}")

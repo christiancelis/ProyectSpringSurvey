@@ -3,7 +3,6 @@ package com.proyectospringsurvey.survey.surveysCategory.application;
 import java.util.List;
 import java.util.Optional;
 
-import com.proyectospringsurvey.survey.surveys.domain.Surveys;
 import com.proyectospringsurvey.survey.surveysCategory.domain.surveysCategory;
 
 public interface ISurveyCategory {
@@ -11,5 +10,4 @@ public interface ISurveyCategory {
      List<surveysCategory> getAllsCategory();
      Optional<surveysCategory> findByIdsCategory(Long id);
      surveysCategory DeletesCategory (Long id);
-     surveysCategory addSurveyToCategories(Long id, Surveys survey);
 }

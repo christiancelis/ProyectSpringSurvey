@@ -3,7 +3,6 @@ package com.proyectospringsurvey.survey.surveysCategory.infrastructure;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.proyectospringsurvey.survey.surveys.domain.Surveys;
 import com.proyectospringsurvey.survey.surveysCategory.domain.surveysCategory;
 
 import java.util.List;
@@ -27,20 +26,6 @@ public class ControllersCategory {
     @Autowired
     private ImpServicesCategory impServicesCategory;
 
-
-    @PostMapping("SurveyCategory")
-    public ResponseEntity<?> createsCategory(@RequestBody Optional<surveysCategory> sCategory) {
-        if(sCategory.isPresent()){
-            return ResponseEntity.ok().body(impServicesCategory.createsCategory(sCategory.get()));
-        } 
-        return ResponseEntity.notFound().build();
-    }
-
-    @PostMapping("survey/category/{id}")
-    public ResponseEntity<?> addSurveyToCategory(@PathVariable Long id, @RequestBody Surveys survey) {
-       return ResponseEntity.ok().body(impServicesCategory.addSurveyToCategories(id, survey));
-    }
-
     @GetMapping("SurveyCategory")
     public List<surveysCategory> getAllsCategory() {
         return impServicesCategory.getAllsCategory();
@@ -54,6 +39,17 @@ public class ControllersCategory {
        }
        return ResponseEntity.notFound().build();
     }
+
+
+    @PostMapping("SurveyCategory")
+    public ResponseEntity<?> createsCategory(@RequestBody Optional<surveysCategory> sCategory) {
+        if(sCategory.isPresent()){
+            return ResponseEntity.ok().body(impServicesCategory.createsCategory(sCategory.get()));
+        } 
+        return ResponseEntity.notFound().build();
+    }
+
+  
 
     @DeleteMapping("SurveyCategory/{id}")
     public ResponseEntity<?> deletesCategory(@PathVariable Long id){
