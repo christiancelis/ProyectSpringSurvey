@@ -46,7 +46,7 @@ public class SurveyImpService implements ISurvey{
     public Set<Surveys> getSurveysByIdCategory(Long id){
         Optional<surveysCategory> categoria = repositorysCategory.findById(id);
         if(categoria.isPresent()){
-            return categoria.get().getSurveys();
+            return surveyRepository.findAllBySurveyCategoria_Id(categoria.get().getId());
         }
         return null;
     }
@@ -70,15 +70,15 @@ public class SurveyImpService implements ISurvey{
 
     @Override
     public Surveys deleteSurvey(Long id) {
-        Optional<Surveys> encuesta = surveyRepository.findById(id);
+        // Optional<Surveys> encuesta = surveyRepository.findById(id);
 
-        if(encuesta.isPresent()){
-            Surveys survey = encuesta.get();
-            survey.getCategories_survey().clear();
-            surveyRepository.save(survey);
-            surveyRepository.deleteById(id);
-            return survey;
-        }
+        // if(encuesta.isPresent()){
+        //     Surveys survey = encuesta.get();
+        //     survey.getCategories_survey().clear();
+        //     surveyRepository.save(survey);
+        //     surveyRepository.deleteById(id);
+        //     return survey;
+        // }
 
         return null;
     }

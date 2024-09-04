@@ -1,10 +1,4 @@
 package com.proyectospringsurvey.survey.surveys.domain;
-
-
-import java.util.HashSet;
-import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.proyectospringsurvey.survey.audit.domain.Audit;
 import com.proyectospringsurvey.survey.surveysCategory.domain.surveysCategory;
 
@@ -15,7 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.NoArgsConstructor;
 
@@ -38,10 +33,10 @@ public class Surveys {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "surveys", cascade = CascadeType.ALL)
-    @JsonBackReference
-    private Set<surveysCategory> categories_survey =  new HashSet<>();
-    
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "category_id")
+    private surveysCategory sCat;
+
     @Override
     public String toString() {
         return "Survey [id=" + id + ", audit=" + audit + ", description=" + description + ", name=" + name + "]";
@@ -79,12 +74,14 @@ public class Surveys {
         this.name = name;
     }
 
-    public Set<surveysCategory> getCategories_survey() {
-        return categories_survey;
+    public surveysCategory getsCat() {
+        return sCat;
     }
 
-    public void setCategories_survey(surveysCategory categories_survey) {
-        this.categories_survey.add(categories_survey);
+    public void setsCat(surveysCategory sCat) {
+        this.sCat = sCat;
     }
+
+    
     
 }

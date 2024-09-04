@@ -36,14 +36,6 @@ public class surveysCategory {
     @Column(columnDefinition = "VARCHAR(20)", unique = true)
     private String name;
 
-    @ManyToMany
-    @JsonManagedReference
-    @JoinTable(
-        name = "categories_survey",
-        joinColumns = @JoinColumn(name = "categories_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "survey_id", referencedColumnName = "id")
-    ) 
-    private Set<Surveys> surveys =  new HashSet<>();
 
     public Long getId() {
         return id;
@@ -69,12 +61,6 @@ public class surveysCategory {
         this.name = name;
     }
 
-    public Set<Surveys> getSurveys() {
-        return surveys;
-    }
-
-    public void setSurveys(Surveys surveys) {
-        this.surveys.add(surveys);
-    }
+    
     
 }
