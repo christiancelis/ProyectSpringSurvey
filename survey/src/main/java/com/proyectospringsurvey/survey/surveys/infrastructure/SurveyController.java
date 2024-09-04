@@ -53,12 +53,8 @@ public class SurveyController {
     }
 
     @DeleteMapping("survey/{id}")
-    public ResponseEntity<?> createSurvey(@PathVariable Long id) {
-        if(surveyImpService.deleteSurvey(id)!=null){
-            return ResponseEntity.ok().body(surveyImpService.deleteSurvey(id));
-        }
-
-        return ResponseEntity.notFound().build();
+    public void createSurvey(@PathVariable Long id) {
+            surveyImpService.deleteSurvey(id);
     }
 
  

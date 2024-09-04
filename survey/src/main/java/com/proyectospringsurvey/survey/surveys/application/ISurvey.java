@@ -7,10 +7,10 @@ import com.proyectospringsurvey.survey.surveys.domain.Surveys;
 
 public interface ISurvey {
      Surveys createSurvey(Long idCategoria, Surveys surveys);
-     
+
 
      Optional<Surveys> findByIdSurveys(Long id);
      List<Surveys> getSurveysByIdCategory(Long id);
      Surveys partialUpdate(Surveys survey);
-     Surveys deleteSurvey(Long id);
+     void deleteSurvey(Long id);
 }

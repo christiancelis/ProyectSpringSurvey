@@ -74,7 +74,7 @@ public class SurveyImpService implements ISurvey{
     }
 
     @Override
-    public Surveys deleteSurvey(Long id) {
+    public void deleteSurvey(Long id) {
 
         Optional<Surveys> encuesta = surveyRepository.findById(id);
 
@@ -83,10 +83,9 @@ public class SurveyImpService implements ISurvey{
             survey.setsCat(null);
             surveyRepository.save(encuesta.get());
             surveyRepository.deleteById(id);
-            return survey;
+            return;
         }
 
-        return null;
     }
     
     
