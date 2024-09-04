@@ -1,22 +1,13 @@
 package com.proyectospringsurvey.survey.surveysCategory.domain;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.proyectospringsurvey.survey.audit.domain.Audit;
-import com.proyectospringsurvey.survey.surveys.domain.Surveys;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.NoArgsConstructor;
 
@@ -61,6 +52,6 @@ public class surveysCategory {
         this.name = name;
     }
 
-    
+
     
 }

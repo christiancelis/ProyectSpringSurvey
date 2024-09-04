@@ -43,10 +43,10 @@ public class SurveyImpService implements ISurvey{
     }
 
     @Override
-    public Set<Surveys> getSurveysByIdCategory(Long id){
+    public List<Surveys> getSurveysByIdCategory(Long id){
         Optional<surveysCategory> categoria = repositorysCategory.findById(id);
         if(categoria.isPresent()){
-            return surveyRepository.findAllBySurveyCategoria_Id(categoria.get().getId());
+            return surveyRepository.findBySCat(categoria.get());
         }
         return null;
     }
