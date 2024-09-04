@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/")
-@CrossOrigin(origins = "*")
 public class ChapterController {
 
     @Autowired 

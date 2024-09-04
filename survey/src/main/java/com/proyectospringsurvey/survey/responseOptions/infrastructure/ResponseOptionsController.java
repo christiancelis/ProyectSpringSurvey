@@ -16,7 +16,6 @@ import com.proyectospringsurvey.survey.responseOptions.domain.ResponseOptions;
 
 @RestController
 @RequestMapping("/api/")
-@CrossOrigin(origins = "*")
 public class ResponseOptionsController {
 
     @Autowired
