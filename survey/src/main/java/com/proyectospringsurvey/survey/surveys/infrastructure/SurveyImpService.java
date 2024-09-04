@@ -67,6 +67,17 @@ public class SurveyImpService implements ISurvey{
   
         return null;
     }
+
+    @Override
+    public Surveys deleteSurvey(Long id) {
+        Optional<Surveys> encuesta = surveyRepository.findById(id);
+        if(encuesta.isPresent()){
+            surveyRepository.deleteById(id);
+            return encuesta.get();
+        }
+        
+        return null;
+    }
     
     
 
