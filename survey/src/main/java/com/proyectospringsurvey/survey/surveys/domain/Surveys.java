@@ -38,7 +38,7 @@ public class Surveys {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "surveys" , cascade = CascadeType.REMOVE)
+    @ManyToMany(mappedBy = "surveys")
     @JsonBackReference
     private Set<surveysCategory> categories_survey =  new HashSet<>();
     

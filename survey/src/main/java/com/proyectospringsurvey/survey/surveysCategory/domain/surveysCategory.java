@@ -36,7 +36,7 @@ public class surveysCategory {
     @Column(columnDefinition = "VARCHAR(20)", unique = true)
     private String name;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany
     @JsonManagedReference
     @JoinTable(
         name = "categories_survey",
