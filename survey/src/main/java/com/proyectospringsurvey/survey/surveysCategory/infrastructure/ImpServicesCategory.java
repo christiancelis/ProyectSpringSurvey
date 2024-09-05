@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.proyectospringsurvey.survey.surveys.domain.Surveys;
 import com.proyectospringsurvey.survey.surveys.infrastructure.SurveyRepository;
 import com.proyectospringsurvey.survey.surveysCategory.application.ISurveyCategory;
 import com.proyectospringsurvey.survey.surveysCategory.domain.surveysCategory;

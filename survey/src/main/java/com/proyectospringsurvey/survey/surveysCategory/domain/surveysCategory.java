@@ -3,6 +3,7 @@ package com.proyectospringsurvey.survey.surveysCategory.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.proyectospringsurvey.survey.audit.domain.Audit;
 import com.proyectospringsurvey.survey.surveys.domain.Surveys;
 
@@ -34,6 +35,7 @@ public class surveysCategory {
     private String name;
 
     @OneToMany(mappedBy = "sCat", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     List<Surveys> surveys = new ArrayList<>();
 
     

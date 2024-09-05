@@ -2,6 +2,8 @@ package com.proyectospringsurvey.survey.surveys.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.proyectospringsurvey.survey.audit.domain.Audit;
 import com.proyectospringsurvey.survey.chapter.domain.Chapter;
 import com.proyectospringsurvey.survey.surveysCategory.domain.surveysCategory;
@@ -40,9 +42,11 @@ public class Surveys {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
+    @JsonBackReference
     private surveysCategory sCat;
 
     @OneToMany(mappedBy = "surveys", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     List<Chapter> listachap = new ArrayList<>(); 
 
     @Override

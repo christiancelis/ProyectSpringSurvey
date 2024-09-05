@@ -1,5 +1,6 @@
 package com.proyectospringsurvey.survey.chapter.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.proyectospringsurvey.survey.audit.domain.Audit;
 import com.proyectospringsurvey.survey.surveys.domain.Surveys;
 
@@ -36,6 +37,7 @@ public class Chapter {
    
     @ManyToOne
     @JoinColumn(name = "survey_id")
+    @JsonBackReference
     private Surveys surveys;
     
 }
