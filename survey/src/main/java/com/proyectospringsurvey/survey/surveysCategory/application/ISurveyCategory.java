@@ -9,5 +9,5 @@ public interface ISurveyCategory {
      surveysCategory createsCategory(surveysCategory sCategory);
      List<surveysCategory> getAllsCategory();
      Optional<surveysCategory> findByIdsCategory(Long id);
-     void DeletesCategoryByName(String name);
+     boolean DeletesCategoryByName(String name);
 }

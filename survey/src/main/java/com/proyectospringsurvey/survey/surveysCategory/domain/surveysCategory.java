@@ -1,13 +1,19 @@
 package com.proyectospringsurvey.survey.surveysCategory.domain;
 
-import com.proyectospringsurvey.survey.audit.domain.Audit;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.proyectospringsurvey.survey.audit.domain.Audit;
+import com.proyectospringsurvey.survey.surveys.domain.Surveys;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.NoArgsConstructor;
 
@@ -26,6 +32,11 @@ public class surveysCategory {
     
     @Column(columnDefinition = "VARCHAR(20)", unique = true)
     private String name;
+
+    @OneToMany(mappedBy = "sCat", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Surveys> surveys = new ArrayList<>();
+
+    
 
 
     public Long getId() {
@@ -52,6 +63,14 @@ public class surveysCategory {
         this.name = name;
     }
 
+    public List<Surveys> getSurveys() {
+        return surveys;
+    }
 
+    public void setSurveys(List<Surveys> surveys) {
+        this.surveys = surveys;
+    }
+
+    
     
 }

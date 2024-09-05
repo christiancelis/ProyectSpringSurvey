@@ -52,8 +52,13 @@ public class ControllersCategory {
   
 
     @DeleteMapping("SurveyCategory/{name}")
-    public void deletesCategory(@PathVariable String name){
-       impServicesCategory.DeletesCategoryByName(name);
+    public ResponseEntity<?> deletesCategory(@PathVariable String name){
+       boolean validacion =  impServicesCategory.DeletesCategoryByName(name);
+       if(validacion==true){
+            return ResponseEntity.ok().body(null);
+       }else{
+            return ResponseEntity.internalServerError().build();
+       }
     }
     
 }

@@ -34,7 +34,7 @@ public class Chapter {
     @Column(name = "chapter_title", columnDefinition = "varchar(50)")
     private String chapterTitle;
    
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "survey_id")
     private Surveys surveys;
     

@@ -8,5 +8,6 @@ import com.proyectospringsurvey.survey.surveysCategory.domain.surveysCategory;
 
 @Repository
 public interface RepositorysCategory extends JpaRepository<surveysCategory,Long>{
-    void deleteByName(String name); 
+    void deleteByName(String name);
+    surveysCategory findByname(String name); 
 }
