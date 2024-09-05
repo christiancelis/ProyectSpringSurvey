@@ -9,5 +9,6 @@ import com.proyectospringsurvey.survey.surveysCategory.domain.surveysCategory;
 @Repository
 public interface RepositorysCategory extends JpaRepository<surveysCategory,Long>{
     void deleteByName(String name);
+    void deleteById(Long id);
     surveysCategory findByname(String name); 
 }
