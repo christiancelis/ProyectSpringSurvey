@@ -10,4 +10,5 @@ public interface ISurveyCategory {
      List<surveysCategory> getAllsCategory();
      Optional<surveysCategory> findByIdsCategory(Long id);
      boolean DeletesCategoryByName(String name);
+     boolean DeletesCategoryById(Long id);
 }
