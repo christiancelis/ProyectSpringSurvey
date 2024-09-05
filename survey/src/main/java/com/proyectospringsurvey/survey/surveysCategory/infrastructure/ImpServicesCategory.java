@@ -54,6 +54,21 @@ public class ImpServicesCategory implements ISurveyCategory{
         }
     }
 
+     @Override
+    @Transactional
+    public boolean DeletesCategoryById(Long id) {
+        Optional<surveysCategory> categoria = repositorysCategory.findById(id);
+        if (categoria.isPresent()) {
+            // Maneja las relaciones antes de eliminar la categoría si es necesario
+            // Ejemplo: categoria.get().getSurveys().clear();
+            
+            repositorysCategory.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     
     
     
