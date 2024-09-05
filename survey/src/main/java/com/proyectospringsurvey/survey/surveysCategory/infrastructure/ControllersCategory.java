@@ -51,14 +51,19 @@ public class ControllersCategory {
 
   
 
-    @DeleteMapping("SurveyCategory/{name}")
-    public ResponseEntity<?> deletesCategory(@PathVariable String name){
-       boolean validacion =  impServicesCategory.DeletesCategoryByName(name);
-       if(validacion==true){
-            return ResponseEntity.ok().body(null);
-       }else{
-            return ResponseEntity.internalServerError().build();
-       }
+  @DeleteMapping("SurveyCategory/{name}")
+public ResponseEntity<String> deletesCategory(@PathVariable String name) {
+    try {
+        boolean validacion = impServicesCategory.DeletesCategoryByName(name);
+        if (validacion) {
+            return ResponseEntity.noContent().build(); // 204 No Content
+        } else {
+            return ResponseEntity.notFound().build(); // 404 Not Found
+        }
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                             .body("Error al eliminar la categoría: " + e.getMessage());
     }
-    
+}
+
 }
