@@ -54,26 +54,30 @@ public class ImpServicesCategory implements ISurveyCategory{
 //         }
 //     }
 
-     @Override
-    @Transactional
-    public boolean DeletesCategoryById(Long id) {
+@Override
+@Transactional
+public boolean DeletesCategoryById(Long id) {
+    try {
         Optional<surveysCategory> categoria = repositorysCategory.findById(id);
         if (categoria.isPresent()) {
-            // Maneja las relaciones antes de eliminar la categoría si es necesario
-            // Ejemplo: categoria.get().getSurveys().clear();
-            
+            categoria.get().getSurveys().clear(); // Limpiar relaciones si es necesario
             repositorysCategory.deleteById(id);
             return true;
         } else {
             return false;
         }
+    } catch (Exception e) {
+        // Log del error para más detalles
+        e.printStackTrace();
+        return false;
     }
+}
 
-    @Override
-    public boolean DeletesCategoryByName(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'DeletesCategoryByName'");
-    }
+    // @Override
+    // public boolean DeletesCategoryByName(String name) {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'DeletesCategoryByName'");
+    // }
 
     
     
