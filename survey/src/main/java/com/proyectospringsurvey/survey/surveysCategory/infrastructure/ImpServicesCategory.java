@@ -32,16 +32,11 @@ public class ImpServicesCategory implements ISurveyCategory{
     }
 
     @Override
-    public surveysCategory DeletesCategory(Long id) {
-        Optional<surveysCategory> sCat = repositorysCategory.findById(id);
-        if(sCat.isPresent()){
-            repositorysCategory.deleteById(id);
-            return sCat.get();
-        }
-
-        return null;
+    public void DeletesCategoryByName(String name) {
+        repositorysCategory.deleteByName(name);
     }
 
+    
     
     
 }

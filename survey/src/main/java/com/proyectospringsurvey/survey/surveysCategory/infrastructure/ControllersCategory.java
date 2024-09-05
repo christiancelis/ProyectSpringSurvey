@@ -51,9 +51,9 @@ public class ControllersCategory {
 
   
 
-    @DeleteMapping("SurveyCategory/{id}")
-    public ResponseEntity<?> deletesCategory(@PathVariable Long id){
-        return ResponseEntity.ok().body(impServicesCategory.DeletesCategory(id));
+    @DeleteMapping("SurveyCategory/{name}")
+    public void deletesCategory(@PathVariable String name){
+       impServicesCategory.DeletesCategoryByName(name);
     }
     
 }
