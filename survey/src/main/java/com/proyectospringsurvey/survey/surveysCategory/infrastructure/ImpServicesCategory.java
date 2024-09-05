@@ -36,19 +36,22 @@ public class ImpServicesCategory implements ISurveyCategory{
     }
 
      
-    @Override
+   @Override
     @Transactional
     public boolean DeletesCategoryByName(String name) {
         surveysCategory categoria = repositorysCategory.findByname(name);
-        if(categoria.getName()!=name){
-            categoria.getSurveys().removeAll(categoria.getSurveys());
-            repositorysCategory.save(categoria);
-            repositorysCategory.deleteByName(name);
+        if (categoria != null) {
+            // Primero, elimina las encuestas asociadas
+            for (Surveys encuesta : categoria.getSurveys()) {
+                encuesta.setCategory(null); // Desasocia la encuesta de la categoría
+                surveyRepository.save(encuesta); // Guarda los cambios
+            }
+            // Luego, elimina la categoría
+            repositorysCategory.delete(categoria);
             return true;
-        }else{
-            return false;
+        } else {
+            return false; // Categoría no encontrada
         }
-
     }
 
     
