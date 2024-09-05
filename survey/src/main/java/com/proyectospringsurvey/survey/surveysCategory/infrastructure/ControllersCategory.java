@@ -66,4 +66,14 @@ public ResponseEntity<String> deletesCategory(@PathVariable String name) {
     }
 }
 
+     @DeleteMapping("SurveyCategory/{id}")
+    public ResponseEntity<?> deletesCategory(@PathVariable Long id){
+        boolean validacion = impServicesCategory.DeletesCategoryById(id);
+        if(validacion){
+            return ResponseEntity.ok().body(null);
+        } else {
+            return ResponseEntity.notFound().build(); // Retorna NotFound si no se encontró la categoría
+        }
+    }
+
 }
