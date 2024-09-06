@@ -1,38 +1,32 @@
 package com.proyectospringsurvey.survey.users.domain;
-
+import java.util.Collection;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.proyectospringsurvey.survey.roles.domain.Roles;
-
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.UniqueConstraint;
+import lombok.Builder;
+import jakarta.persistence.EnumType;
+
 
 @Entity
-@Table(name = "users")
-
-@Getter
-@Setter
-@NoArgsConstructor
-public class Users {
+@Table(name="users", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
+@Builder
+public class Users implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "enabled", columnDefinition = "BOOL", nullable = false)
-    private double enabled;
+    private boolean enabled;
 
     @Column(name = "username", columnDefinition = "VARCHAR(12)", nullable = false)
     private String username;
@@ -40,19 +34,90 @@ public class Users {
     @Column(name = "password", columnDefinition = "VARCHAR(255)", nullable = false)
     private String  password;
 
-    @Transient
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    public boolean admin;
+  @Column(name = "enum_type")
+   @Enumerated(EnumType.STRING) 
+   Role role;
 
-    @ManyToMany
-    @JoinTable
-    (
-        name = "users_role",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns =  @JoinColumn(name = "role_id")
-    )
-    private List <Roles> roles;
 
+
+   
+   public Users() {
+}
+
+public Users(Long id, boolean enabled, String username, String password, Role role) {
+    this.id = id;
+    this.enabled = enabled;
+    this.username = username;
+    this.password = password;
+    this.role = role;
+}
+
+   @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+      return List.of(new SimpleGrantedAuthority((role.name())));
+    }
+   
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+   
+
+    
+    
 
 }
 
