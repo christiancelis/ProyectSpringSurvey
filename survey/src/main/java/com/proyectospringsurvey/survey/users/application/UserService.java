@@ -1,12 +1,10 @@
 package com.proyectospringsurvey.survey.users.application;
 
-
-
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 import com.proyectospringsurvey.survey.users.domain.Users;
 
-@Service
 public interface UserService{
+    List<Users> findAll();
     Users save(Users user);
 }
