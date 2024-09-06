@@ -6,8 +6,10 @@ import java.util.Set;
 
 import org.apache.catalina.User;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,22 +39,22 @@ public class AuthService {
             .build();
 
     }
+    
 
-    public AuthResponse register(RegisterRequest request) {
-       
-        Users user = Users.builder()
-            .username(request.getUsername())
-            .password(passwordEncoder.encode( request.getPassword()))
-            .role(Role.USER)
-            .build();
+public AuthResponse register(RegisterRequest request) {
+    Users user = Users.builder()
+        .username(request.getUsername())
+        .password(passwordEncoder.encode( request.getPassword()))
+        .role(Role.USER)
+        .build();
 
-        userRepository.save(user);
+    userRepository.save(user);
 
-        return AuthResponse.builder()
-            .token(jwtservice.getToken(user))
-            .build();
-        
-    }
+    return AuthResponse.builder()
+        .token(jwtservice.getToken(user))
+        .build();
+    
+}
 
     
 
