@@ -2,15 +2,20 @@ package com.proyectospringsurvey.survey.surveysCategory.infrastructure;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
+import com.proyectospringsurvey.survey.surveysCategory.domain.surveyCategoryDto;
 import com.proyectospringsurvey.survey.surveysCategory.domain.surveysCategory;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,22 +54,20 @@ public class ControllersCategory {
         return ResponseEntity.notFound().build();
     }
 
-  
 
-//   @DeleteMapping("SurveyCategory/{name}")
-// public ResponseEntity<String> deletesCategory(@PathVariable String name) {
-//     try {
-//         boolean validacion = impServicesCategory.DeletesCategoryByName(name);
-//         if (validacion) {
-//             return ResponseEntity.noContent().build(); // 204 No Content
-//         } else {
-//             return ResponseEntity.notFound().build(); // 404 Not Found
-//         }
-//     } catch (Exception e) {
-//         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-//                              .body("Error al eliminar la categoría: " + e.getMessage());
-//     }
-// }
+   @PutMapping("SurveyCategory")
+public ResponseEntity<?> actualizarCategoria(@RequestBody surveyCategoryDto surveyCategoryDto) {
+    Optional<surveysCategory> categoryval = impServicesCategory.findByIdsCategory(surveyCategoryDto.getCategoryId());
+    
+    if (categoryval.isPresent()) {
+        surveysCategory category = categoryval.get();
+        category.setName(surveyCategoryDto.getCategoryName());
+        return ResponseEntity.ok().body(impServicesCategory.actualizarCategoria(category));
+    }
+    
+    // Lanzar excepción si no se encuentra la categoría
+    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoría no encontrada");
+}
 
 @DeleteMapping("SurveyCategory/{id}")
 public ResponseEntity<?> deletesCategory(@PathVariable Long id){
@@ -75,6 +78,5 @@ public ResponseEntity<?> deletesCategory(@PathVariable Long id){
          return ResponseEntity.internalServerError().build();
     }
 }
-
 
 }
