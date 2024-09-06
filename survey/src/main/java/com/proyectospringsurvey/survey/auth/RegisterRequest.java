@@ -13,6 +13,5 @@ public class RegisterRequest {
  
     String username;
     String password;
-    boolean enable;
 
 }
